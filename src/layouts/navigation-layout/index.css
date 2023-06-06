@@ -1,0 +1,18 @@
+.topNavigation {
+  position: fixed;
+  top: 0;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to right, #EDB65B, #020202)
+}
+.bg-transparent{
+  background: transparent;
+}
+.navigation-title{
+  width: 25%;
+  text-align: center;
+  color: #f9f9f9;
+  line-height: 70px;
+}
