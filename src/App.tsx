@@ -2,6 +2,7 @@ import './App.css'
 import React from 'react'
 import Home from './pages/home'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import './global.css'
 
 function App() {
   return (

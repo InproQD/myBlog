@@ -7,7 +7,68 @@
   background-position: center center;
 }
 .main-content {
-    height: fit-content;
-    width: 100%;
-    padding: 10px 400px;
+  height: fit-content;
+  min-height: 700px;
+  padding: 10px 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards-wrap {
+  height: fit-content;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+.card {
+  width: 350px;
+  height: 390px;
+  border-radius: 10px;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.card-top {
+  width: 100%;
+  height: 220px;
+  position: relative;
+}
+
+.card-top-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-top-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #f9f9f9;
+}
+
+.card-middle {
+  color: #1a1a1a;
+  height: fit-content;
+  font-weight: lighter;
+}
+
+.card-middle-content {
+  line-height: 1.2; /* 设置行高，根据需要进行调整 */
+  height: 3.6em; /* 计算行高乘以行数，确保文字只占三行，根据需要进行调整 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-footer{
+  height: 50px;
+}
+.card-footer-tab{
+  height: fit-content;
+  background: linear-gradient(to right, #edb65b, #020202);
+  width: fit-content;
+  border-radius: 15px;
+  color: #f9f9f9;
 }
