@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './index.css'
 import NavigationLayout from '@/layouts/navigation-layout/index'
 import { Card } from 'antd'
@@ -10,6 +10,7 @@ function Home() {
   const [cardItems] = useState([
     {
       title: 'Lodash',
+      imgUrl: '../../../public/card2.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -18,6 +19,7 @@ function Home() {
     },
     {
       title: 'Lodash',
+      imgUrl: '../../../public/card1.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -26,6 +28,7 @@ function Home() {
     },
     {
       title: 'Lodash',
+      imgUrl: '../../../public/card4.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -34,6 +37,43 @@ function Home() {
     },
     {
       title: 'Lodash',
+      imgUrl: '../../../public/card3.jpg',
+      content:
+        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
+      createAt: '2023-02-34',
+      author: 'Peter Q',
+      tab: 'JS Plugins'
+    },
+    {
+      title: 'Lodash',
+      imgUrl: '../../../public/card2.jpg',
+      content:
+        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
+      createAt: '2023-02-34',
+      author: 'Peter Q',
+      tab: 'JS Plugins'
+    },
+    {
+      title: 'Lodash',
+      imgUrl: '../../../public/card1.jpg',
+      content:
+        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
+      createAt: '2023-02-34',
+      author: 'Peter Q',
+      tab: 'JS Plugins'
+    },
+    {
+      title: 'Lodash',
+      imgUrl: '../../../public/card4.jpg',
+      content:
+        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
+      createAt: '2023-02-34',
+      author: 'Peter Q',
+      tab: 'JS Plugins'
+    },
+    {
+      title: 'Lodash',
+      imgUrl: '../../../public/card3.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -41,6 +81,40 @@ function Home() {
       tab: 'JS Plugins'
     }
   ])
+
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const cardElement = cardRef.current
+      // console.log(cardElement)
+      if (!cardElement) return
+      const cardRect = cardElement.getBoundingClientRect()
+      const scrollTop = window.scrollY
+      console.log(cardRect.top, scrollTop)
+      const windowHeight = document.documentElement.clientHeight
+      console.log(windowHeight)
+      // 计算卡片一半的高度
+      const cardHalfHeight = cardRect.height / 2
+      console.log(cardHalfHeight)
+      if (cardRect.top - scrollTop < windowHeight - cardHalfHeight && cardRect.bottom > cardHalfHeight) {
+        // 滚动到卡片一半高度时添加动画效果
+        // console.log('2112')
+        cardElement.classList.add('card-visible')
+      } else {
+        // 向上滚动或高度小于一半时移除动画效果
+        cardElement.classList.remove('card-visible')
+      }
+    }
+
+    // 监听滚动事件
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      // 移除滚动事件监听
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
   return (
     <NavigationLayout>
       <div className="header-content"></div>
@@ -51,9 +125,9 @@ function Home() {
 
         <div className="cards-wrap">
           {cardItems.map((items, index) => (
-            <div key={index} className="card mr-2">
+            <div key={index} className="card" ref={cardRef}>
               <div className="card-top">
-                <img src={'../../../public/card4.jpg'} className="card-top-img" alt={'Lodash'}></img>
+                <img src={items.imgUrl} className="card-top-img" alt={'Lodash'}></img>
                 <span className="card-top-title pa-4 f-s-20">{items.title}</span>
               </div>
               <div className="card-middle pa-4">

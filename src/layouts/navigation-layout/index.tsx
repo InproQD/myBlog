@@ -24,11 +24,15 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
   return (
     <>
       <div className={isTop ? 'bg-transparent topNavigation' : 'topNavigation'}>
-        <div className="navigation-title">InproQD</div>
+        <div className="navigation-title px-5">
+          <img src={'../../../public/logo.png'} width={50} height={50} />
+          InproQD
+        </div>
       </div>
       <div>
         <main className="pb-12">{children}</main>
       </div>
+      <div className="footer"></div>
     </>
   )
 }
