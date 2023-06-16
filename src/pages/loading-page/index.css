@@ -8,48 +8,6 @@
   align-items: center;
 }
 
-.open-wrap {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-}
-
-.open-left {
-  /*float: left;*/
-  height: 100%;
-  width: 50%;
-  background-color: #1a1a1a;
-  transform: translate(-100%);
-  transition: all 1s;
-}
-
-.open-right {
-  /*float: right;*/
-  height: 100%;
-  width: 50%;
-  background-color: #1a1a1a;
-  transform: translate(-100%);
-  /*animation-delay: 2s;*/
-}
-
-/*@keyframes spread-left {*/
-/*  0% {*/
-/*    width: 50vw;*/
-/*  }*/
-/*  100% {*/
-/*    width: 0;*/
-/*  }*/
-/*}*/
-
-/*@keyframes spread-right {*/
-/*  0% {*/
-/*    width: 50vw;*/
-/*  }*/
-/*  100% {*/
-/*    width: 100vw;*/
-/*  }*/
-/*}*/
-
 /*旋转方块的动画，来源网站：https://uiverse.io/all*/
 .spinner {
   width: 70.4px;
@@ -108,4 +66,37 @@
   100% {
     transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
   }
+}
+
+/*双开门效果*/
+.open-wrap {
+  height: 100vh;
+  width: 100vw;
+  /*display: flex;*/
+}
+
+.open-left {
+  float: left;
+  height: 100%;
+  width: 50%;
+  background-color: #1a1a1a;
+  transform: translate(0);
+  transition: transform .5s;
+}
+
+.open-left.active {
+  transform: translate(-100%);
+}
+
+.open-right {
+  float: right;
+  height: 100%;
+  width: 50%;
+  background-color: #1a1a1a;
+  transform: translate(0);
+  transition: transform .5s;
+}
+
+.open-right.active {
+  transform: translate(100%);
 }
