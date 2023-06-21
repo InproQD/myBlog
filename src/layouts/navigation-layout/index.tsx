@@ -42,7 +42,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
 
   const [searchOpen, setSearchOpen] = useState(false)
 
-  const handleSearch = (t) => {
+  const handleSearch = (t: any) => {
     if (t === '') {
       setSearchOpen(true)
     }
@@ -73,7 +73,9 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
         </div>
       </div>
       <div>
-        <main className="pb-12">{children}</main>
+        <main className="pb-12" style={{ background: 'linear-gradient(to right, #F5F5F5 80%, #EDB65B 100%)' }}>
+          {children}
+        </main>
       </div>
       <div className="footer"></div>
       <div className="aside-navigator">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import './index.css'
 import NavigationLayout from '@/layouts/navigation-layout/index'
 import { Card } from 'antd'
@@ -84,37 +84,37 @@ function Home() {
 
   const cardRef = useRef(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const cardElement = cardRef.current
-      // console.log(cardElement)
-      if (!cardElement) return
-      const cardRect = cardElement.getBoundingClientRect()
-      const scrollTop = window.scrollY
-      console.log(cardRect.top, scrollTop)
-      const windowHeight = document.documentElement.clientHeight
-      console.log(windowHeight)
-      // 计算卡片一半的高度
-      const cardHalfHeight = cardRect.height / 2
-      console.log(cardHalfHeight)
-      if (cardRect.top - scrollTop < windowHeight - cardHalfHeight && cardRect.bottom > cardHalfHeight) {
-        // 滚动到卡片一半高度时添加动画效果
-        // console.log('2112')
-        cardElement.classList.add('card-visible')
-      } else {
-        // 向上滚动或高度小于一半时移除动画效果
-        cardElement.classList.remove('card-visible')
-      }
-    }
-
-    // 监听滚动事件
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      // 移除滚动事件监听
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const cardElement = cardRef.current
+  //     // console.log(cardElement)
+  //     if (!cardElement) return
+  //     const cardRect = cardElement.getBoundingClientRect()
+  //     const scrollTop = window.scrollY
+  //     console.log(cardRect.top, scrollTop)
+  //     const windowHeight = document.documentElement.clientHeight
+  //     console.log(windowHeight)
+  //     // 计算卡片一半的高度
+  //     const cardHalfHeight = cardRect.height / 2
+  //     console.log(cardHalfHeight)
+  //     if (cardRect.top - scrollTop < windowHeight - cardHalfHeight && cardRect.bottom > cardHalfHeight) {
+  //       // 滚动到卡片一半高度时添加动画效果
+  //       // console.log('2112')
+  //       cardElement.classList.add('card-visible')
+  //     } else {
+  //       // 向上滚动或高度小于一半时移除动画效果
+  //       cardElement.classList.remove('card-visible')
+  //     }
+  //   }
+  //
+  //   // 监听滚动事件
+  //   window.addEventListener('scroll', handleScroll)
+  //
+  //   return () => {
+  //     // 移除滚动事件监听
+  //     window.removeEventListener('scroll', handleScroll)
+  //   }
+  // }, [])
   return (
     <NavigationLayout>
       <div className="header-content"></div>

@@ -12,6 +12,7 @@ export default defineConfig(({ command, mode }) => {
         include: ['src/**/*.ts', 'src/**/*.tsx', 'src/*.ts', 'src/*.tsx']
       })
     ],
+    base: './',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src')
