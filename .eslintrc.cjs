@@ -22,6 +22,11 @@ module.exports = {
     },
     "parser": '@typescript-eslint/parser',
   },
+  "settings": {
+    "react": {
+      "version": "18.2.0" // 替换为你使用的 React 版本
+    }
+  },
   "plugins": [
     "react",
     "@typescript-eslint",

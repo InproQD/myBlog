@@ -7,9 +7,11 @@ import eslintPlugin from 'vite-plugin-eslint'
 export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
-      react(),
+      react({
+        include: [/\.tsx$/, /\.md$/]
+      }),
       eslintPlugin({
-        include: ['src/**/*.ts', 'src/**/*.tsx', 'src/*.ts', 'src/*.tsx']
+        include: ['src/**/*.ts', 'src/**/*.tsx', 'src/*.ts', 'src/*.tsx', 'src/*.md']
       })
     ],
     base: './',
@@ -17,6 +19,7 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '@': path.resolve(__dirname, './src')
       }
-    }
+    },
+    assetsInclude: ['**/*.md']
   }
 })
