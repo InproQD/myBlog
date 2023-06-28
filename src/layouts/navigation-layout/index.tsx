@@ -52,7 +52,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
     <>
       <div className={isTop ? 'bg-transparent topNavigation' : 'topNavigation'}>
         <div className="navigation-title px-5">
-          <img src={'../../../public/logo.png'} width={50} height={50} />
+          <img src={'http://123.207.40.28/logo.png'} width={50} height={50} />
           InproQD
         </div>
         <div className="navigator-wrap">

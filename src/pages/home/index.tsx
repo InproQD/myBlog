@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react'
 import './index.css'
 import NavigationLayout from '@/layouts/navigation-layout/index'
-import { Card } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { faLightbulb } from '@fortawesome/free-regular-svg-icons'
 
 function Home() {
   const [cardItems] = useState([
@@ -119,15 +119,25 @@ function Home() {
     <NavigationLayout>
       <div className="header-content"></div>
       <div className="main-content">
-        <Card className="text-center width-100" title={'Always In Progress'} bordered={false}>
-          Not Everything that can be counted counts, and not everything that counts can be counted.
-        </Card>
+        <div className="text-center width-100 dream-card">
+          <p className="f-s-32 f-w-700">
+            <FontAwesomeIcon icon={faLightbulb} className="mr-2" />
+            Always In Progress
+          </p>
+          <p className="f-s-14">
+            Not Everything that can be counted counts, and not everything that counts can be counted.
+          </p>
+        </div>
 
         <div className="cards-wrap">
           {cardItems.map((items, index) => (
             <div key={index} className="card" ref={cardRef}>
               <div className="card-top">
-                <img src={items.imgUrl} className="card-top-img" alt={'Lodash'}></img>
+                <img
+                  src={`http://123.207.40.28/card${Math.floor(Math.random() * 24) + 1}.jpg`}
+                  className="card-top-img"
+                  alt={'Lodash'}
+                ></img>
                 <span className="card-top-title pa-4 f-s-20">{items.title}</span>
               </div>
               <div className="card-middle pa-4">

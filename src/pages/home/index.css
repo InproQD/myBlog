@@ -1,7 +1,7 @@
 .header-content {
   height: 100vh;
   width: 100vw;
-  background-image: url('../../../public/home.jpg');
+  background-image: url('http://123.207.40.28/banner8.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -14,7 +14,14 @@
   flex-direction: column;
   align-items: center;
 }
-
+.dream-card {
+  height: fit-content;
+  width: 100%;
+  box-shadow: 0 0 10px #d3d3d3;
+  border-radius: 10px;
+  padding: 24px 0;
+  margin: 10px 0;
+}
 .cards-wrap {
   height: fit-content;
   width: 100%;
@@ -64,18 +71,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.card-footer{
+.card-footer {
   height: 50px;
 }
-.card-footer-tab{
+.card-footer-tab {
   height: fit-content;
   background: linear-gradient(to right, #edb65b, #020202);
   width: fit-content;
   border-radius: 15px;
   color: #f9f9f9;
 }
-.card-visible{
-  transition-delay: .1s;
+.card-visible {
+  transition-delay: 0.1s;
   opacity: 1;
-  transform: translate(0) scale(1)
+  transform: translate(0) scale(1);
 }

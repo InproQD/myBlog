@@ -19,7 +19,7 @@ const options: any = {
   breaks: true,
   smartLists: true,
   smartypants: true,
-  highlight: function (code) {
+  highlight: function (code: any) {
     return hljs.highlightAuto(code).value
   }
 }
@@ -40,7 +40,10 @@ const ArticlePage = () => {
   const markdownToHtml = marked(markdown)
 
   setTimeout(() => {
-    document.getElementById('article').innerHTML = markdownToHtml
+    const articleElement = document.getElementById('article')
+    if (articleElement) {
+      articleElement.innerHTML = markdownToHtml
+    }
   }, 0)
 
   return (
