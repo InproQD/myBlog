@@ -6,6 +6,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 /*旋转方块的动画，来源网站：https://uiverse.io/all*/
@@ -72,6 +76,10 @@
 .open-wrap {
   height: 100vh;
   width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
   /*display: flex;*/
 }
 
@@ -81,7 +89,7 @@
   width: 50%;
   background-color: #1a1a1a;
   transform: translate(0);
-  transition: transform .5s;
+  transition: transform 1s;
 }
 
 .open-left.active {
@@ -94,7 +102,7 @@
   width: 50%;
   background-color: #1a1a1a;
   transform: translate(0);
-  transition: transform .5s;
+  transition: transform 1s;
 }
 
 .open-right.active {
