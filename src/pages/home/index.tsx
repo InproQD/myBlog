@@ -10,7 +10,7 @@ function Home() {
   const [cardItems] = useState([
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card2.jpg',
+      imgUrl: 'http://123.207.40.28/card1.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -19,7 +19,7 @@ function Home() {
     },
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card1.jpg',
+      imgUrl: 'http://123.207.40.28/card2.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -28,7 +28,7 @@ function Home() {
     },
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card4.jpg',
+      imgUrl: 'http://123.207.40.28/card3.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -37,7 +37,7 @@ function Home() {
     },
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card3.jpg',
+      imgUrl: 'http://123.207.40.28/card4.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -46,7 +46,7 @@ function Home() {
     },
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card2.jpg',
+      imgUrl: 'http://123.207.40.28/card5.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -55,7 +55,7 @@ function Home() {
     },
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card1.jpg',
+      imgUrl: 'http://123.207.40.28/card6.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -64,7 +64,7 @@ function Home() {
     },
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card4.jpg',
+      imgUrl: 'http://123.207.40.28/card7.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -73,7 +73,7 @@ function Home() {
     },
     {
       title: 'Lodash',
-      imgUrl: '../../../public/card3.jpg',
+      imgUrl: 'http://123.207.40.28/card8.jpg',
       content:
         'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
       createAt: '2023-02-34',
@@ -117,7 +117,9 @@ function Home() {
   // }, [])
   return (
     <NavigationLayout>
-      <div className="header-content"></div>
+      <div className="header-content">
+        <div className="f-s-32">There is no tomorrow</div>
+      </div>
       <div className="main-content">
         <div className="text-center width-100 dream-card">
           <p className="f-s-32 f-w-700">
@@ -133,11 +135,7 @@ function Home() {
           {cardItems.map((items, index) => (
             <div key={index} className="card" ref={cardRef}>
               <div className="card-top">
-                <img
-                  src={`http://123.207.40.28/card${Math.floor(Math.random() * 24) + 1}.jpg`}
-                  className="card-top-img"
-                  alt={'Lodash'}
-                ></img>
+                <img src={items.imgUrl} className="card-top-img" alt={'Lodash'}></img>
                 <span className="card-top-title pa-4 f-s-20">{items.title}</span>
               </div>
               <div className="card-middle pa-4">

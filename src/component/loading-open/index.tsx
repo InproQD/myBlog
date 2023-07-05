@@ -1,26 +1,29 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import './index.css'
 
 const LoadingPage = () => {
   const [loading, setLoading] = useState(true)
-  const Navigate = useNavigate()
+  const [activeOpen, setActiveOpen] = useState(true)
+
   setTimeout(() => {
-    setLoading(false)
+    // 切换为双开门效果
+    setActiveOpen(false)
+    // 等待200ms再添加动画，给标签绑定动态属性留一定时间
     setTimeout(() => {
       const left = document.getElementById('open-left') as HTMLBRElement
       const right = document.getElementById('open-right') as HTMLBRElement
-      left.classList.add('active')
-      right.classList.add('active')
+      if (left) left.classList.add('active')
+      if (right) right.classList.add('active')
       setTimeout(() => {
-        Navigate('/home')
-      }, 500)
+        // 取消整个loading的动画
+        setLoading(false)
+      }, 1500)
     }, 200)
-  }, 1000)
+  }, 2000)
 
   return (
     <>
-      {loading && (
+      {loading && activeOpen && (
         <div className="loading-wrap">
           <div className="spinner">
             <div></div>
@@ -33,7 +36,7 @@ const LoadingPage = () => {
           <div className="mt-12 text-white">加载中...</div>
         </div>
       )}
-      {!loading && (
+      {loading && !activeOpen && (
         <div className="open-wrap">
           <div className="open-left" id="open-left"></div>
           <div className="open-right" id="open-right"></div>
