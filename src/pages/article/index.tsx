@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { marked } from 'marked'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/monokai-sublime.css'
+
 import NavigationLayout from '@/layouts/navigation-layout'
 import './index.css'
 import './markdown.css'
-import { marked } from 'marked'
-// import markdownContent from '../../../public/source/vuexStudyNote.md'
-import hljs from 'highlight.js'
-import 'highlight.js/styles/monokai-sublime.css'
 
 // 配合highlight实现代码高亮
 const renderer = new marked.Renderer()
@@ -39,12 +39,17 @@ const ArticlePage = () => {
 
   const markdownToHtml = marked(markdown)
 
-  setTimeout(() => {
-    const articleElement = document.getElementById('article')
-    if (articleElement) {
-      articleElement.innerHTML = markdownToHtml
+  useEffect(() => {
+    const md = setTimeout(() => {
+      const articleElement = document.getElementById('article')
+      if (articleElement) {
+        articleElement.innerHTML = markdownToHtml
+      }
+    }, 1000)
+    return () => {
+      clearTimeout(md)
     }
-  }, 0)
+  }, [markdown])
 
   return (
     <NavigationLayout>

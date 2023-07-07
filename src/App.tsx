@@ -1,13 +1,13 @@
-import './App.css'
-import '@/component/loading-open/index.css'
 import React from 'react'
-import Home from './pages/home'
-// import LoadingPage from '@/pages/loading-open'
-import ArticlePage from '@/pages/article'
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
-import './global.css'
+
+import Home from './pages/home'
+import ArticlePage from '@/pages/article'
 import ProgressBar from '@/component/pageProgress/index'
 import LoadingPage from '@/component/loading-open'
+import './App.css'
+import '@/component/loading-open/index.css'
+import './global.css'
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
       </Routes>
 
-      <LoadingPage></LoadingPage>
-      <ProgressBar></ProgressBar>
+      <LoadingPage />
+      <ProgressBar />
     </HashRouter>
   )
 }

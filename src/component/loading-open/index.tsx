@@ -1,25 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './index.css'
+import { useLocation } from 'react-router-dom'
 
 const LoadingPage = () => {
   const [loading, setLoading] = useState(true)
   const [activeOpen, setActiveOpen] = useState(true)
 
-  setTimeout(() => {
-    // 切换为双开门效果
-    setActiveOpen(false)
-    // 等待200ms再添加动画，给标签绑定动态属性留一定时间
-    setTimeout(() => {
-      const left = document.getElementById('open-left') as HTMLBRElement
-      const right = document.getElementById('open-right') as HTMLBRElement
-      if (left) left.classList.add('active')
-      if (right) right.classList.add('active')
-      setTimeout(() => {
-        // 取消整个loading的动画
-        setLoading(false)
-      }, 1500)
-    }, 200)
-  }, 2000)
+  const LoadingFunction = () => {
+    const loadingTimeOut = setTimeout(() => {
+      // 切换为双开门效果
+      setActiveOpen(false)
+      // 等待200ms再添加动画，给标签绑定动态属性留一定时间
+      const animationTimeOut = setTimeout(() => {
+        const left = document.getElementById('open-left') as HTMLBRElement
+        const right = document.getElementById('open-right') as HTMLBRElement
+        if (left) left.classList.add('active')
+        if (right) right.classList.add('active')
+        const deleteTimeOut = setTimeout(() => {
+          setLoading(false)
+        }, 1000)
+        return () => {
+          clearTimeout(deleteTimeOut)
+        }
+      }, 200)
+      return () => {
+        clearTimeout(animationTimeOut)
+      }
+    }, 2000)
+    return () => {
+      clearTimeout(loadingTimeOut)
+    }
+  }
+
+  const location = useLocation()
+  useEffect(() => {
+    // 通过监听路由来触发loading动画
+    setLoading(true)
+    setActiveOpen(true)
+    LoadingFunction()
+  }, [location])
 
   return (
     <>

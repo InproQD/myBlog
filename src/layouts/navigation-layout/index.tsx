@@ -1,13 +1,14 @@
 import React, { ReactNode, useState, useEffect } from 'react'
-import './index.css'
-import Jarvis from '@/component/jarvis'
+import { Modal } from 'antd'
 import { Link } from 'react-router-dom'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import { faTag } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { Modal } from 'antd'
+import './index.css'
+import Jarvis from '@/component/jarvis'
 
 //-----------类型定义写外面（如果写在函数里面，那么每次render都会重新定义给值）
 interface NavigationLayoutProps {
