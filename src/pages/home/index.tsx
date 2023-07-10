@@ -136,8 +136,9 @@ function Home() {
             <FontAwesomeIcon icon={faLightbulb} className="mr-2" />
             Always In Progress
           </p>
-          <p className="f-s-14">
-            Not Everything that can be counted counts, and not everything that counts can be counted.
+          <p className="f-s-16">
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
+            Not Everything that counts can be counted, and not everything that's counted truly counts.
           </p>
         </div>
 

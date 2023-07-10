@@ -1,0 +1,19 @@
+.header-wrap {
+  height: 400px;
+  width: 100vw;
+  background-image: url('http://123.207.40.28/card17.jpg');
+}
+.content-wrap {
+  width: 1000px;
+  padding: 24px 36px;
+  height: fit-content;
+  min-height: 800px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgb(134, 133, 133);
+  margin: -50px auto 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

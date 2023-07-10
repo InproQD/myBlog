@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import { faTag } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faMusic } from '@fortawesome/free-solid-svg-icons'
 
@@ -36,6 +37,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
     { title: 'Home', link: '/', icon: faHouse },
     { title: 'About', link: '/about', icon: faTag },
     { title: 'Contact', link: '/contact', icon: faComment },
+    { title: 'Video', link: '/video', icon: faCirclePlay },
     {
       title: '',
       link: '',
@@ -57,7 +59,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
       <div className={isTop ? 'bg-transparent topNavigation' : 'topNavigation'}>
         <div className="navigation-title px-5">
           <img src={'http://123.207.40.28/logo.png'} width={50} height={50} />
-          InproQD
+          <span className="f-s-20 f-w-700 ml-2">InproQD</span>
         </div>
         <div className="navigator-wrap">
           {navItems.map((item, index) => (
@@ -108,7 +110,6 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
         width={500}
         open={drawerOpen}
       >
-        <iframe src="https://www.bilibili.com/video/BV1pa4y1a73j/?spm_id_from=333.337.search-card.all.click&vd_source=d42914e3d1b11763c718a78ef65a95d0"></iframe>
         <meting-js
           id="8864961372"
           server="tencent"
