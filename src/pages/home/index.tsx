@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 
-import NavigationLayout from '@/layouts/navigation-layout/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons'
+import NavigationLayout from '@/layouts/navigation-layout/index'
 import './index.css'
 
 function Home() {

@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react'
-import { Modal } from 'antd'
+import { Modal, Drawer, Avatar } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,6 +7,8 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import { faTag } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faMusic } from '@fortawesome/free-solid-svg-icons'
+
 import './index.css'
 import Jarvis from '@/component/jarvis'
 
@@ -42,6 +44,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
   ]
 
   const [searchOpen, setSearchOpen] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleSearch = (t: any) => {
     if (t === '') {
@@ -79,14 +82,46 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
         </main>
       </div>
       <div className="footer"></div>
-      <div className="aside-navigator">
+      <div className="aside-navigator-left">
         <Jarvis></Jarvis>
       </div>
-      <Modal title="Modal 1000px width" centered open={searchOpen} width={1000}>
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
-      </Modal>
+
+      <div className="aside-navigator-right">
+        <Avatar
+          size={64}
+          className="avatar-wrap"
+          icon={<FontAwesomeIcon icon={faMusic} className="pr-1"></FontAwesomeIcon>}
+          onClick={() => {
+            setDrawerOpen(true)
+          }}
+        />
+      </div>
+      <Modal title="Modal 1000px width" centered open={searchOpen} width={1000}></Modal>
+
+      {/*音乐播放器抽屉*/}
+      <Drawer
+        placement="right"
+        closable={false}
+        onClose={() => {
+          setDrawerOpen(false)
+        }}
+        width={500}
+        open={drawerOpen}
+      >
+        <iframe src="https://www.bilibili.com/video/BV1pa4y1a73j/?spm_id_from=333.337.search-card.all.click&vd_source=d42914e3d1b11763c718a78ef65a95d0"></iframe>
+        <meting-js
+          id="8864961372"
+          server="tencent"
+          type="playlist"
+          autoplay="true"
+          loop="all"
+          order="random"
+          preload="auto"
+          list-folded="ture"
+          list-max-height="600px"
+          lrc-type="1"
+        ></meting-js>
+      </Drawer>
     </>
   )
 }
