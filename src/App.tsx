@@ -14,7 +14,6 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        {/*<Route path="/loading" element={<LoadingPage />}></Route>*/}
         <Route path="/home" element={<Home />}></Route>
         <Route path="/content" element={<ArticlePage />}></Route>
         <Route path="/video" element={<MediaPage />}></Route>

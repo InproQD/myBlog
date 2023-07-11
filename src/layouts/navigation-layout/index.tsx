@@ -18,6 +18,15 @@ interface NavigationLayoutProps {
   children: ReactNode
 }
 
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'meting-js': any
+    }
+  }
+}
+
 // 一般函数组件+ts的规范写法，需要定义 props 类型方便检查
 const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
   const [isTop, setIsTop] = useState(true)

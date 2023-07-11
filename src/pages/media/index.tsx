@@ -12,9 +12,7 @@ const MediaPage = () => {
           style={{ width: '900px', height: '500px' }}
           src="//player.bilibili.com/player.html?aid=668862997&bvid=BV1pa4y1a73j&cid=212249869&page=1"
           scrolling="no"
-          border="0"
           frameBorder="no"
-          allowfullscreen="true"
           sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"
         ></iframe>
       </div>
