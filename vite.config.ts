@@ -20,6 +20,15 @@ export default defineConfig(({ command, mode }) => {
         '@': path.resolve(__dirname, './src')
       }
     },
+    // server: {
+    //   proxy: {
+    //     '/api': {
+    //       target: 'http://123.207.40.28',
+    //       changeOrigin: true,
+    //       rewrite: (path) => path.replace(/^\/api/, '')
+    //     }
+    //   }
+    // },
     assetsInclude: ['**/*.md']
   }
 })

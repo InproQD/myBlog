@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/monokai-sublime.css'
-
+// import axios from 'axios'
 import NavigationLayout from '@/layouts/navigation-layout'
 import './index.css'
 import './markdown.css'

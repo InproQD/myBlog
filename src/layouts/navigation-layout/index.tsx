@@ -92,7 +92,14 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
           {children}
         </main>
       </div>
-      <div className="footer"></div>
+      <div className="footer">
+        <div className="footer-content">
+          备案号：
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+            蜀ICP备2023015762号-1
+          </a>
+        </div>
+      </div>
       <div className="aside-navigator-left">
         <Jarvis></Jarvis>
       </div>
