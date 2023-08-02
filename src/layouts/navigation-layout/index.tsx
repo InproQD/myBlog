@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react'
-import { Modal, Drawer, Avatar } from 'antd'
+import { Modal, Drawer, Avatar, Tooltip } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,6 +9,10 @@ import { faComment } from '@fortawesome/free-solid-svg-icons'
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faMusic } from '@fortawesome/free-solid-svg-icons'
+import { faQq } from '@fortawesome/free-brands-svg-icons'
+import { faWeixin } from '@fortawesome/free-brands-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faCopyright } from '@fortawesome/free-solid-svg-icons'
 
 import './index.css'
 import Jarvis from '@/component/jarvis'
@@ -54,6 +58,13 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
     }
   ]
 
+  const contactItem = [
+    { text: 'contact me with QQ：296682284', link: 'https://im.qq.com/index/', icon: faQq },
+    { text: 'contact me with WeChat：Inpro', link: '', icon: faWeixin },
+    { text: 'My Github', link: 'https://github.com/InproQD', icon: faGithub },
+    { text: 'To CSDN', link: 'https://blog.csdn.net/m0_49909696?spm=1000.2115.3001.5343', icon: faCopyright }
+  ]
+
   const [searchOpen, setSearchOpen] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -94,10 +105,23 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
       </div>
       <div className="footer">
         <div className="footer-content">
-          备案号：
-          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
-            蜀ICP备2023015762号-1
-          </a>
+          <div>
+            备案号：
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+              蜀ICP备2023015762号-1
+            </a>
+          </div>
+          <div className="d-flex">
+            {contactItem.map((item, index) => (
+              <Link to={item.link} key={index}>
+                <div className="pr-5">
+                  <Tooltip title={item.text}>
+                    <FontAwesomeIcon icon={item.icon}></FontAwesomeIcon>
+                  </Tooltip>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
       <div className="aside-navigator-left">

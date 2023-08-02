@@ -1091,12 +1091,19 @@
 .d-flex {
   display: flex;
 }
+
 .justify-space-between {
   justify-content: space-between;
 }
+
+.justify-center {
+  justify-content: center;
+}
+
 .align-center {
   align-items: center;
 }
+
 .text-center {
   text-align: center;
 }
