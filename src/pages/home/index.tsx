@@ -7,19 +7,18 @@ import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons'
 import NavigationLayout from '@/layouts/navigation-layout/index'
 import './index.css'
-import { request } from '@/util/request.js'
+import { request } from '@/util/request'
 
 function Home() {
   const [cardItems, setCardItems] = useState([
     {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card1.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
+      id: '',
+      title: '',
+      content: '',
+      create_time: '',
+      author: '',
+      tag: '',
+      introduction: ''
     }
   ])
 
@@ -29,11 +28,10 @@ function Home() {
       .get(
         'http://123.207.40.28:8083/api/get-articles-list',
         {},
-        (res) => {
-          console.log(res)
+        (res: any) => {
           setCardItems(res)
         },
-        (res) => {
+        (res: any) => {
           console.log(res)
         }
       )

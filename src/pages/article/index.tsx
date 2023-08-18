@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
-import { request } from '@/util/request.js'
+import { request } from '@/util/request'
 import 'highlight.js/styles/monokai-sublime.css'
 // import axios from 'axios'
 import NavigationLayout from '@/layouts/navigation-layout'
@@ -37,10 +37,10 @@ const ArticlePage = () => {
       .get(
         'http://123.207.40.28:8083/api/get-articles',
         { id: id },
-        (res) => {
+        (res: any) => {
           setMarkdown(res[0].content)
         },
-        (res) => {
+        (res: any) => {
           console.log(res)
         }
       )

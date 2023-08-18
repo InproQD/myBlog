@@ -1,29 +1,29 @@
 import axios from 'axios'
 
 const request = {
-  get(url, input, success, failure) {
+  get(url: string, input: any, success: any, failure: any) {
     return axios.get(url, { params: input }).then((result) => {
       return resultHandler(result, Promise.resolve, Promise.reject, success, failure)
     })
   },
-  post(url, input, success, failure) {
+  post(url: string, input: any, success: any, failure: any) {
     return axios.post(url, input).then((result) => {
       return resultHandler(result, Promise.resolve, Promise.reject, success, failure)
     })
   },
-  put(url, input, success, failure) {
+  put(url: string, input: any, success: any, failure: any) {
     return axios.put(url, input).then((result) => {
       return resultHandler(result, Promise.resolve, Promise.reject, success, failure)
     })
   },
-  delete(url, input, success, failure) {
+  delete(url: string, input: any, success: any, failure: any) {
     return axios.delete(url, { params: input }).then((result) => {
       return resultHandler(result, Promise.resolve, Promise.reject, success, failure)
     })
   }
 }
 
-function resultHandler(result, resolve, reject, success, failure) {
+function resultHandler(result: any, resolve: any, reject: any, success: any, failure: any) {
   if (result) {
     const resultData = result.data
 
@@ -32,7 +32,9 @@ function resultHandler(result, resolve, reject, success, failure) {
         if (failure) {
           failure(resultData)
         }
-        return Promise.reject(result.data).catch(function (reason) {})
+        return Promise.reject(result.data).catch(function (reason) {
+          console.log(reason)
+        })
       } else {
         if (success) {
           success(resultData.data)
@@ -46,7 +48,9 @@ function resultHandler(result, resolve, reject, success, failure) {
       return Promise.reject(result.statusText)
     }
   } else {
-    return Promise.reject(new Error('')).catch((e) => {})
+    return Promise.reject(new Error('')).catch((e) => {
+      console.log(e)
+    })
   }
 }
 export { request }
