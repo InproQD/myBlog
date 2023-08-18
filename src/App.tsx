@@ -15,7 +15,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/home" element={<Home />}></Route>
-        <Route path="/content" element={<ArticlePage />}></Route>
+        <Route path="/content/:id" element={<ArticlePage />}></Route>
         <Route path="/video" element={<MediaPage />}></Route>
         <Route path="/" element={<Navigate to="/home" />} />
       </Routes>

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,9 +7,10 @@ import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons'
 import NavigationLayout from '@/layouts/navigation-layout/index'
 import './index.css'
+import { request } from '@/util/request.js'
 
 function Home() {
-  const cardItems = [
+  const [cardItems, setCardItems] = useState([
     {
       title: 'Lodash',
       imgUrl: 'http://123.207.40.28/card1.jpg',
@@ -19,81 +20,25 @@ function Home() {
       author: 'Peter Q',
       tab: 'JS Plugins',
       link: '/content'
-    },
-    {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card2.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
-    },
-    {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card3.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
-    },
-    {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card4.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
-    },
-    {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card5.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
-    },
-    {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card6.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
-    },
-    {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card7.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
-    },
-    {
-      title: 'Lodash',
-      imgUrl: 'http://123.207.40.28/card8.jpg',
-      content:
-        'lodash是一个JS库，一个让javascript使用起来更简单的工具，它可以对Number, String, Object, Array等进行简单或复杂的操作，减少代码量',
-      createAt: '2023-02-34',
-      author: 'Peter Q',
-      tab: 'JS Plugins',
-      link: '/content'
     }
-  ]
+  ])
 
   const cardRef = useRef(null)
-
+  useEffect(() => {
+    request
+      .get(
+        'http://123.207.40.28:8083/api/get-articles-list',
+        {},
+        (res) => {
+          console.log(res)
+          setCardItems(res)
+        },
+        (res) => {
+          console.log(res)
+        }
+      )
+      .then()
+  }, [])
   // useEffect(() => {
   //   const handleScroll = () => {
   //     const cardElement = cardRef.current
@@ -144,18 +89,18 @@ function Home() {
 
         <div className="cards-wrap">
           {cardItems.map((items, index) => (
-            <Link to={items.link} key={index}>
-              <div key={index} className="card" ref={cardRef}>
+            <Link to={`/content/${items.id}`} key={index}>
+              <div key={index} className="card animate__animated animate__bounceIn" ref={cardRef}>
                 <div className="card-top">
-                  <img src={items.imgUrl} className="card-top-img" alt={'Lodash'}></img>
+                  <img src={`http://123.207.40.28/card${items.id}.jpg`} className="card-top-img" alt={'Lodash'}></img>
                   <span className="card-top-title pa-4 f-s-20">{items.title}</span>
                 </div>
                 <div className="card-middle pa-4">
-                  <div className="card-middle-content f-s-16">{items.content}</div>
+                  <div className="card-middle-content f-s-16">{items.introduction}</div>
                   <div className="d-flex justify-space-between pt-2">
                     <div>
                       <FontAwesomeIcon icon={faClock} />
-                      <span className="pl-2">{items.createAt}</span>
+                      <span className="pl-2">{items.create_time}</span>
                     </div>
                     <div>
                       <FontAwesomeIcon icon={faUser} />
@@ -165,7 +110,7 @@ function Home() {
                 </div>
                 <hr className="ma-0"></hr>
                 <div className="card-footer d-flex align-center px-4">
-                  <div className="card-footer-tab px-2 f-s-12">{items.tab}</div>
+                  <div className="card-footer-tab px-2 f-s-12">{items.tag}</div>
                 </div>
               </div>
             </Link>

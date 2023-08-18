@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
+import { request } from '@/util/request.js'
 import 'highlight.js/styles/monokai-sublime.css'
 // import axios from 'axios'
 import NavigationLayout from '@/layouts/navigation-layout'
 import './index.css'
 import './markdown.css'
+import { useParams } from 'react-router-dom'
 
 // 配合highlight实现代码高亮
 const renderer = new marked.Renderer()
@@ -28,13 +30,21 @@ marked.setOptions(options)
 
 const ArticlePage = () => {
   const [markdown, setMarkdown] = useState('')
-
+  const { id } = useParams()
   // 通过fetch来获取项目下的md文件
   useEffect(() => {
-    fetch('../../../public/source/MomentJS.md')
-      .then((response) => response.text())
-      .then((data) => setMarkdown(data))
-      .catch((error) => console.log(error))
+    request
+      .get(
+        'http://123.207.40.28:8083/api/get-articles',
+        { id: id },
+        (res) => {
+          setMarkdown(res[0].content)
+        },
+        (res) => {
+          console.log(res)
+        }
+      )
+      .then()
   }, [])
 
   const markdownToHtml = marked(markdown)
