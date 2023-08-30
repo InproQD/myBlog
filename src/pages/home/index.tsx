@@ -8,6 +8,7 @@ import { faLightbulb } from '@fortawesome/free-regular-svg-icons'
 import NavigationLayout from '@/layouts/navigation-layout/index'
 import './index.css'
 import { request } from '@/util/request'
+import Typed from 'typed.js'
 
 function Home() {
   const [cardItems, setCardItems] = useState([
@@ -37,41 +38,36 @@ function Home() {
       )
       .then()
   }, [])
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const cardElement = cardRef.current
-  //     // console.log(cardElement)
-  //     if (!cardElement) return
-  //     const cardRect = cardElement.getBoundingClientRect()
-  //     const scrollTop = window.scrollY
-  //     console.log(cardRect.top, scrollTop)
-  //     const windowHeight = document.documentElement.clientHeight
-  //     console.log(windowHeight)
-  //     // 计算卡片一半的高度
-  //     const cardHalfHeight = cardRect.height / 2
-  //     console.log(cardHalfHeight)
-  //     if (cardRect.top - scrollTop < windowHeight - cardHalfHeight && cardRect.bottom > cardHalfHeight) {
-  //       // 滚动到卡片一半高度时添加动画效果
-  //       // console.log('2112')
-  //       cardElement.classList.add('card-visible')
-  //     } else {
-  //       // 向上滚动或高度小于一半时移除动画效果
-  //       cardElement.classList.remove('card-visible')
-  //     }
-  //   }
-  //
-  //   // 监听滚动事件
-  //   window.addEventListener('scroll', handleScroll)
-  //
-  //   return () => {
-  //     // 移除滚动事件监听
-  //     window.removeEventListener('scroll', handleScroll)
-  //   }
-  // }, [])
+
+  React.useEffect(() => {
+    const typed = new Typed('#title', {
+      strings: ["Not Everything that counts can be counted, and not everything that's counted truly counts."],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 500,
+      startDelay: 1000,
+      smartBackspace: true,
+      loop: true
+    })
+
+    return () => {
+      // Destroy Typed instance during cleanup to stop animation
+      typed.destroy()
+    }
+  }, [])
+
   return (
     <NavigationLayout>
-      <div className="header-content">
+      <div
+        className="header-content"
+        style={{
+          backgroundImage: `url('http://123.207.40.28/banner${Number(
+            new Date().getDate().toString().slice(1, 2)
+          )}.jpg')`
+        }}
+      >
         <div className="f-s-32">There is no tomorrow</div>
+        <div className="f-s-16" id="title"></div>
       </div>
       <div className="main-content">
         <div className="text-center width-100 dream-card">
@@ -88,7 +84,7 @@ function Home() {
         <div className="cards-wrap">
           {cardItems.map((items, index) => (
             <Link to={`/content/${items.id}`} key={index}>
-              <div key={index} className="card animate__animated animate__bounceIn" ref={cardRef}>
+              <div key={index} className="card" ref={cardRef}>
                 <div className="card-top">
                   <img src={`http://123.207.40.28/card${items.id}.jpg`} className="card-top-img" alt={'Lodash'}></img>
                   <span className="card-top-title pa-4 f-s-20">{items.title}</span>

@@ -6,6 +6,7 @@
   background-size: cover;
   background-position: center center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #f9f9f9;
@@ -45,11 +46,11 @@
   height: 390px;
   border-radius: 10px;
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
-  transition: 0.5s;
+  transition: transform 0.5s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 
 .card:hover {
-  transform: translateY(-15px);
+  transform: scale(1.03); /* 放大 */
 }
 
 .card-top {
@@ -81,7 +82,12 @@
   line-height: 1.2; /* 设置行高，根据需要进行调整 */
   height: 3.6em; /* 计算行高乘以行数，确保文字只占三行，根据需要进行调整 */
   overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-all;
+  text-align: justify;
+  display: -webkit-box;
+  text-overflow: ellipsis;  /* 超出文本展示为省略号 */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* 设置最大行数为三行 */
 }
 
 .card-footer {
@@ -96,8 +102,3 @@
   color: #f9f9f9;
 }
 
-.card-visible {
-  transition-delay: 0.1s;
-  opacity: 1;
-  transform: translate(0) scale(1);
-}
