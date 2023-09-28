@@ -47,7 +47,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
   })
 
   const navItems = [
-    { title: 'Home', link: '/', icon: faHouse },
+    { title: 'Home', link: '/home', icon: faHouse },
     { title: 'About', link: '/about', icon: faTag },
     { title: 'Contact', link: '/contact', icon: faComment },
     { title: 'Video', link: '/video', icon: faCirclePlay },
@@ -106,10 +106,13 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
       <div className="footer">
         <div className="footer-content">
           <div>
-            备案号：
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
-              蜀ICP备2023015762号-1
-            </a>
+            <div>
+              备案号：
+              <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+                蜀ICP备2023015762号-1
+              </a>
+            </div>
+            公安部备案号：51011402000629
           </div>
           <div className="d-flex">
             {contactItem.map((item, index) => (

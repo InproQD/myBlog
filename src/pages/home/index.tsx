@@ -39,14 +39,14 @@ function Home() {
       .then()
   }, [])
 
+  const typeText = React.useRef(null)
   React.useEffect(() => {
-    const typed = new Typed('#title', {
+    const typed = new Typed(typeText.current, {
       strings: ["Not Everything that counts can be counted, and not everything that's counted truly counts."],
       typeSpeed: 50,
       backSpeed: 30,
       backDelay: 500,
       startDelay: 1000,
-      smartBackspace: true,
       loop: true
     })
 
@@ -67,7 +67,9 @@ function Home() {
         }}
       >
         <div className="f-s-32">There is no tomorrow</div>
-        <div className="f-s-16" id="title"></div>
+        <div>
+          <span className="f-s-16" ref={typeText}></span>
+        </div>
       </div>
       <div className="main-content">
         <div className="text-center width-100 dream-card">

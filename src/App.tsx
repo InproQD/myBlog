@@ -1,6 +1,7 @@
 import React from 'react'
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
 
+import Login from './pages/login'
 import Home from './pages/home'
 import ArticlePage from '@/pages/article'
 import MediaPage from '@/pages/media'
@@ -14,10 +15,11 @@ function App() {
   return (
     <HashRouter>
       <Routes>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/content/:id" element={<ArticlePage />}></Route>
         <Route path="/video" element={<MediaPage />}></Route>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
 
       <LoadingPage />
