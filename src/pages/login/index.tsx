@@ -11,13 +11,13 @@ function Login() {
       .post(
         'http://127.0.0.1:8083/api/get-account',
         { identifier: account, password: password },
-        (res) => {
+        (res: any) => {
           if (res.token) {
             window.localStorage.setItem('Access-Token', res.token)
             navigate('/home')
           }
         },
-        (res) => {
+        (res: any) => {
           console.log(res)
         }
       )

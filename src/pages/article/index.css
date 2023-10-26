@@ -13,3 +13,14 @@
   box-shadow: 0 5px 10px rgb(134, 133, 133);
   margin: -50px auto 50px auto;
 }
+.function-panel {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+.edit {
+  cursor: pointer;
+}
+.edit:hover {
+  color: red;
+}

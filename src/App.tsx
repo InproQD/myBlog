@@ -5,6 +5,7 @@ import Login from './pages/login'
 import Home from './pages/home'
 import ArticlePage from '@/pages/article'
 import MediaPage from '@/pages/media'
+import Editor from '@/pages/editor'
 import ProgressBar from '@/component/pageProgress/index'
 import LoadingPage from '@/component/loading-open'
 import './App.css'
@@ -19,6 +20,7 @@ function App() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/content/:id" element={<ArticlePage />}></Route>
         <Route path="/video" element={<MediaPage />}></Route>
+        <Route path="/edit/:id" element={<Editor />}></Route>
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
 

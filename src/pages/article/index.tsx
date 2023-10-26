@@ -8,6 +8,7 @@ import NavigationLayout from '@/layouts/navigation-layout'
 import './index.css'
 import './markdown.css'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // 配合highlight实现代码高亮
 const renderer = new marked.Renderer()
@@ -30,15 +31,16 @@ marked.setOptions(options)
 
 const ArticlePage = () => {
   const [markdown, setMarkdown] = useState('')
+  const [editDisplay, setEditDisplay] = useState(false)
   const { id } = useParams()
-  // 通过fetch来获取项目下的md文件
   useEffect(() => {
     request
       .get(
-        'http://123.207.40.28:8083/api/get-articles',
+        'http://127.0.0.1:8083/api/get-articles',
         { id: id },
         (res: any) => {
-          setMarkdown(res[0].content)
+          setMarkdown(res.list[0].content)
+          setEditDisplay(res.editRight)
         },
         (res: any) => {
           console.log(res)
@@ -64,7 +66,16 @@ const ArticlePage = () => {
   return (
     <NavigationLayout>
       <div className="header"></div>
-      <div className="content-panel" id="article"></div>
+      <div className="content-panel">
+        {editDisplay && (
+          <div className="function-panel">
+            <Link to={`/edit${id}`}>
+              <span className="edit">Edit</span>
+            </Link>
+          </div>
+        )}
+        <div id="article"></div>
+      </div>
     </NavigationLayout>
   )
 }
