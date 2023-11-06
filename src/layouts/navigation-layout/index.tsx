@@ -154,8 +154,8 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
         open={drawerOpen}
       >
         <meting-js
-          id="8864961372"
-          server="tencent"
+          id="3778678"
+          server="netease"
           type="playlist"
           autoplay="true"
           loop="all"

@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { Tool } from '@/util/tool'
 const request = {
   get(url: string, input: any, success: any, failure: any) {
     return axios.get(url, { params: input }).then((result) => {
@@ -53,4 +53,12 @@ function resultHandler(result: any, resolve: any, reject: any, success: any, fai
     })
   }
 }
+
+axios.interceptors.request.use((config) => {
+  const accessToken = window.localStorage.getItem('Access-Token')
+  if (Tool.isNotEmpty(accessToken)) {
+    config.headers.Authorization = accessToken
+  }
+  return config
+})
 export { request }

@@ -7,15 +7,20 @@ import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Editor = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState({
+    author: '',
+    title: '',
+    content: '',
+    tag: ''
+  })
   const { id } = useParams()
   useEffect(() => {
     request
       .get(
-        'http://127.0.0.1:8083/api/get-articles',
+        'http://123.207.40.28:8083/api/get-articles', //todo
         { id: id },
         (res: any) => {
-          setValue(res.list[0].content)
+          setValue(res.list[0])
         },
         (res: any) => {
           console.log(res)
@@ -23,16 +28,45 @@ const Editor = () => {
       )
       .then()
   }, [])
+  const handleSubmit = () => {
+    request
+      .post(
+        'http://123.207.40.28:8083/api/modify-article', //todo
+        value,
+        (res: any) => {
+          console.log(res)
+        },
+        (res: any) => {
+          console.log(res)
+        }
+      )
+      .then()
+  }
   return (
     <div className="container">
       <div className="editor-wrap">
-        <MDEditor value={value} onChange={setValue} height={700} highlightEnable={true} />
-      </div>
-      <div className="btn-wrap mt-5">
-        <button className="back-button">
-          <FontAwesomeIcon icon={faArrowAltCircleLeft} />
-        </button>
-        <button className="submit-btn">Submit</button>
+        <div className="top-panel">
+          <button className="back-button">
+            <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+          </button>
+          <input placeholder="Enter your title" className="input" name="text" type="text" value={value.title} />
+          <input placeholder="Enter your tag" className="input" name="text" type="text" value={value.tag} />
+          <input placeholder="Enter your name" className="input" name="text" type="text" value={value.author} />
+
+          <button className="submit-btn" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
+        <MDEditor
+          value={value.content}
+          onChange={(val: string) => {
+            const newValue = { ...value, content: val }
+            setValue(newValue)
+          }}
+          height={700}
+          highlightEnable={true}
+          data-color-mode={'dark'}
+        />
       </div>
     </div>
   )

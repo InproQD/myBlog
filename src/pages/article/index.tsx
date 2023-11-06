@@ -36,7 +36,7 @@ const ArticlePage = () => {
   useEffect(() => {
     request
       .get(
-        'http://127.0.0.1:8083/api/get-articles',
+        'http://123.207.40.28:8083/api/get-articles', //todo
         { id: id },
         (res: any) => {
           setMarkdown(res.list[0].content)
@@ -69,7 +69,7 @@ const ArticlePage = () => {
       <div className="content-panel">
         {editDisplay && (
           <div className="function-panel">
-            <Link to={`/edit${id}`}>
+            <Link to={`/edit/${id}`}>
               <span className="edit">Edit</span>
             </Link>
           </div>
