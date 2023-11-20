@@ -5,22 +5,25 @@ import { request } from '@/util/request'
 import { useParams } from 'react-router-dom'
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import store from '@/redux/store'
 
 const Editor = () => {
-  const [value, setValue] = useState({
+  const [formData, setFormData] = useState({
     author: '',
     title: '',
-    content: '',
     tag: ''
   })
+  const [content, setContent] = useState('')
   const { id } = useParams()
+
   useEffect(() => {
     request
       .get(
-        'http://123.207.40.28:8083/api/get-articles', //todo
+        'http://123.207.40.28:8083/api/get-articles',
         { id: id },
         (res: any) => {
-          setValue(res.list[0])
+          setFormData(res.list[0])
+          setContent(res.list[0].content)
         },
         (res: any) => {
           console.log(res)
@@ -29,18 +32,23 @@ const Editor = () => {
       .then()
   }, [])
   const handleSubmit = () => {
+    const input = { ...formData, content: content }
     request
       .post(
-        'http://123.207.40.28:8083/api/modify-article', //todo
-        value,
+        'http://123.207.40.28:8083/api/modify-article',
+        input,
         (res: any) => {
-          console.log(res)
+          store.dispatch({ type: 'SET_MESSAGE', value: res })
         },
         (res: any) => {
-          console.log(res)
+          store.dispatch({ type: 'SET_MESSAGE', value: res })
         }
       )
       .then()
+  }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setFormData({ ...formData, [name]: value })
   }
   return (
     <div className="container">
@@ -49,19 +57,39 @@ const Editor = () => {
           <button className="back-button">
             <FontAwesomeIcon icon={faArrowAltCircleLeft} />
           </button>
-          <input placeholder="Enter your title" className="input" name="text" type="text" value={value.title} />
-          <input placeholder="Enter your tag" className="input" name="text" type="text" value={value.tag} />
-          <input placeholder="Enter your name" className="input" name="text" type="text" value={value.author} />
+          <input
+            placeholder="Enter your title"
+            className="input"
+            name="title"
+            type="text"
+            value={formData.title}
+            onChange={handleInputChange}
+          />
+          <input
+            placeholder="Enter your tag"
+            className="input"
+            name="tag"
+            type="text"
+            value={formData.tag}
+            onChange={handleInputChange}
+          />
+          <input
+            placeholder="Enter your name"
+            className="input"
+            name="author"
+            type="text"
+            value={formData.author}
+            onChange={handleInputChange}
+          />
 
           <button className="submit-btn" onClick={handleSubmit}>
             Submit
           </button>
         </div>
         <MDEditor
-          value={value.content}
-          onChange={(val: string) => {
-            const newValue = { ...value, content: val }
-            setValue(newValue)
+          value={content}
+          onChange={(val: any) => {
+            setContent(val)
           }}
           height={700}
           highlightEnable={true}

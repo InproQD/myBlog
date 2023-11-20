@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
-
 import Login from './pages/login'
 import Home from './pages/home'
 import ArticlePage from '@/pages/article'
@@ -8,13 +7,36 @@ import MediaPage from '@/pages/media'
 import Editor from '@/pages/editor'
 import ProgressBar from '@/component/pageProgress/index'
 import LoadingPage from '@/component/loading-open'
+import { message } from 'antd'
+import { useSelector } from 'react-redux'
+import store from '@/redux/store'
 import './App.css'
 import '@/component/loading-open/index.css'
 import './global.css'
 
 function App() {
+  const messageControl = useSelector((state: any) => state.auth.popupVisible)
+  const messageContent = useSelector((state: any) => state.auth.popupMessage)
+  const [messageApi, contextHolder] = message.useMessage()
+  useEffect(() => {
+    if (messageControl) {
+      messageApi.open({
+        type: 'success',
+        content: messageContent,
+        duration: 2
+      })
+      const ms = setTimeout(() => {
+        store.dispatch({ type: 'SET_VISIBLE', value: false })
+      }, 2000)
+      return () => {
+        clearTimeout(ms)
+      }
+    }
+  }, [messageControl])
+
   return (
     <HashRouter>
+      {contextHolder}
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>

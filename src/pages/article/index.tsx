@@ -33,10 +33,11 @@ const ArticlePage = () => {
   const [markdown, setMarkdown] = useState('')
   const [editDisplay, setEditDisplay] = useState(false)
   const { id } = useParams()
+
   useEffect(() => {
     request
       .get(
-        'http://123.207.40.28:8083/api/get-articles', //todo
+        'http://123.207.40.28:8083/api/get-articles',
         { id: id },
         (res: any) => {
           setMarkdown(res.list[0].content)

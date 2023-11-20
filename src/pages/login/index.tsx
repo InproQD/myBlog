@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './index.css'
 import { request } from '@/util/request'
 import { useNavigate } from 'react-router-dom'
+
 function Login() {
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
@@ -9,7 +10,7 @@ function Login() {
   const SignIn = () => {
     request
       .post(
-        'http://123.207.40.28:8083/api/get-account', //todo
+        'http://123.207.40.28:8083/api/get-account',
         { identifier: account, password: password },
         (res: any) => {
           if (res.token) {
