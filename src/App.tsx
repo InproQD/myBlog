@@ -5,6 +5,7 @@ import Home from './pages/home'
 import ArticlePage from '@/pages/article'
 import MediaPage from '@/pages/media'
 import Editor from '@/pages/editor'
+import Write from '@/pages/write'
 import ProgressBar from '@/component/pageProgress/index'
 import LoadingPage from '@/component/loading-open'
 import { message } from 'antd'
@@ -15,14 +16,13 @@ import '@/component/loading-open/index.css'
 import './global.css'
 
 function App() {
-  const messageControl = useSelector((state: any) => state.auth.popupVisible)
-  const messageContent = useSelector((state: any) => state.auth.popupMessage)
+  const messageStore = useSelector((state: any) => state.notification)
   const [messageApi, contextHolder] = message.useMessage()
   useEffect(() => {
-    if (messageControl) {
+    if (messageStore.popupVisible) {
       messageApi.open({
-        type: 'success',
-        content: messageContent,
+        type: messageStore.popupType,
+        content: messageStore.popupMessage,
         duration: 2
       })
       const ms = setTimeout(() => {
@@ -32,7 +32,7 @@ function App() {
         clearTimeout(ms)
       }
     }
-  }, [messageControl])
+  }, [messageStore.popupVisible])
 
   return (
     <HashRouter>
@@ -43,6 +43,7 @@ function App() {
         <Route path="/content/:id" element={<ArticlePage />}></Route>
         <Route path="/video" element={<MediaPage />}></Route>
         <Route path="/edit/:id" element={<Editor />}></Route>
+        <Route path="/create" element={<Write />}></Route>
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
 
