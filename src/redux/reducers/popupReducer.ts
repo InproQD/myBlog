@@ -3,7 +3,7 @@ const initState = {
   popupMessage: '',
   popupType: ''
 }
-const popupReducer = (state = initState, action) => {
+const popupReducer = (state = initState, action: any) => {
   // state 是状态也是数据
   // action是一个对象，由actionCreators发送过来的动作
   // authReducer一定要有返回值

@@ -57,7 +57,7 @@ const Editor = () => {
       )
       .then()
   }
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     const { name, value } = event.target
     setFormData({ ...formData, [name]: value })
   }
