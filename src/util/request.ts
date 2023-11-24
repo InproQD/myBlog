@@ -30,7 +30,7 @@ function resultHandler(result: any, resolve: any, reject: any, success: any, fai
     if (result.status === 200) {
       if (resultData.code !== 1) {
         if (failure) {
-          failure(resultData)
+          failure(resultData.data)
         }
         return Promise.reject(result.data).catch(function (reason) {
           console.log(reason)

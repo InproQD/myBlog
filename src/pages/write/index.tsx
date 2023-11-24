@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './index.css'
 import MDEditor from '@uiw/react-md-editor'
 import { request } from '@/util/request'
-import { useParams } from 'react-router-dom'
-import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import store from '@/redux/store'
-import { useSelector } from 'react-redux'
-import { Tool } from '@/util/tool'
+import BackBtn from '@/component/buttons/backBtn'
+import { Link } from 'react-router-dom'
 
 const Editor = () => {
   const [formData, setFormData] = useState({
@@ -17,36 +14,11 @@ const Editor = () => {
   })
   const [content, setContent] = useState('')
 
-  const article = useSelector((state: any) => state.article.articleObject)
-  useEffect(() => {
-    if (Tool.isNotEmpty(article)) {
-      setFormData(article)
-      setContent(article.content)
-    }
-  }, [])
-
-  const { id } = useParams()
-  const refreshData = () => {
-    request
-      .get(
-        'http://123.207.40.28:8083/api/get-articles',
-        { id: id },
-        (res: any) => {
-          store.dispatch({ type: 'SET_MESSAGE', value: { msg: 'refresh success', type: 'success' } })
-          setFormData(res.list[0])
-          setContent(res.list[0].content)
-        },
-        (res: any) => {
-          store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
-        }
-      )
-      .then()
-  }
   const handleSubmit = () => {
     const input = { ...formData, content: content }
     request
       .post(
-        'http://123.207.40.28:8083/api/modify-article',
+        'http://123.207.40.28:8083/api/add-article',
         input,
         (res: any) => {
           store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'success' } })
@@ -62,12 +34,12 @@ const Editor = () => {
     setFormData({ ...formData, [name]: value })
   }
   return (
-    <div className="editor-container">
+    <div className="container">
       <div className="editor-wrap">
         <div className="top-panel">
-          <button className="back-button" onClick={refreshData}>
-            <FontAwesomeIcon icon={faArrowAltCircleLeft} />
-          </button>
+          <Link to={'/home'}>
+            <BackBtn></BackBtn>
+          </Link>
           <input
             placeholder="Enter your title"
             className="input"

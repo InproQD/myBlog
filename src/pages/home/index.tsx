@@ -9,6 +9,7 @@ import NavigationLayout from '@/layouts/navigation-layout/index'
 import './index.css'
 import { request } from '@/util/request'
 import Typed from 'typed.js'
+import store from '@/redux/store'
 
 function Home() {
   const [cardItems, setCardItems] = useState([
@@ -33,7 +34,7 @@ function Home() {
           setCardItems(res)
         },
         (res: any) => {
-          console.log(res)
+          store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
         }
       )
       .then()

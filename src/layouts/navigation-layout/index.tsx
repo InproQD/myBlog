@@ -13,6 +13,7 @@ import { faQq } from '@fortawesome/free-brands-svg-icons'
 import { faWeixin } from '@fortawesome/free-brands-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faCopyright } from '@fortawesome/free-solid-svg-icons'
+import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
 import './index.css'
 import Jarvis from '@/component/jarvis'
@@ -140,6 +141,13 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
             setDrawerOpen(true)
           }}
         />
+        <Link to={'/create'}>
+          <Avatar
+            size={64}
+            className="mt-5 avatar-wrap"
+            icon={<FontAwesomeIcon icon={faPencil} className="pr-1"></FontAwesomeIcon>}
+          />
+        </Link>
       </div>
       <Modal title="Modal 1000px width" centered open={searchOpen} width={1000}></Modal>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './index.css'
 import { request } from '@/util/request'
 import { useNavigate } from 'react-router-dom'
+import store from '@/redux/store'
 
 function Login() {
   const [account, setAccount] = useState('')
@@ -19,7 +20,7 @@ function Login() {
           }
         },
         (res: any) => {
-          console.log(res)
+          store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
         }
       )
       .then()

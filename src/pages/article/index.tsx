@@ -9,6 +9,7 @@ import './index.css'
 import './markdown.css'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import store from '@/redux/store'
 
 // 配合highlight实现代码高亮
 const renderer = new marked.Renderer()
@@ -42,9 +43,13 @@ const ArticlePage = () => {
         (res: any) => {
           setMarkdown(res.list[0].content)
           setEditDisplay(res.editRight)
+          store.dispatch({
+            type: 'SET_EDITOR_CONTENT',
+            value: res.list[0]
+          })
         },
         (res: any) => {
-          console.log(res)
+          store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
         }
       )
       .then()
