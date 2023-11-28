@@ -64,7 +64,7 @@ function Login() {
               }}
             />
           </div>
-          <button className="button my-4" onClick={SignIn}>
+          <button className="sign-button my-4" onClick={SignIn}>
             Sign In
           </button>
         </div>

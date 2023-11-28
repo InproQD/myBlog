@@ -17,6 +17,7 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
 import './index.css'
 import Jarvis from '@/component/jarvis'
+import { useSelector } from 'react-redux'
 
 //-----------类型定义写外面（如果写在函数里面，那么每次render都会重新定义给值）
 interface NavigationLayoutProps {
@@ -74,6 +75,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
       setSearchOpen(true)
     }
   }
+  const isLogin = useSelector((state: any) => state.auth.administratorRight)
 
   return (
     <>
@@ -141,13 +143,15 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
             setDrawerOpen(true)
           }}
         />
-        <Link to={'/create'}>
-          <Avatar
-            size={64}
-            className="mt-5 avatar-wrap"
-            icon={<FontAwesomeIcon icon={faPencil} className="pr-1"></FontAwesomeIcon>}
-          />
-        </Link>
+        {isLogin && (
+          <Link to={'/create'}>
+            <Avatar
+              size={64}
+              className="mt-5 avatar-wrap"
+              icon={<FontAwesomeIcon icon={faPencil} className="pr-1"></FontAwesomeIcon>}
+            />
+          </Link>
+        )}
       </div>
       <Modal title="Modal 1000px width" centered open={searchOpen} width={1000}></Modal>
 

@@ -10,6 +10,7 @@ import './markdown.css'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import store from '@/redux/store'
+import { useSelector } from 'react-redux'
 
 // 配合highlight实现代码高亮
 const renderer = new marked.Renderer()
@@ -32,7 +33,7 @@ marked.setOptions(options)
 
 const ArticlePage = () => {
   const [markdown, setMarkdown] = useState('')
-  const [editDisplay, setEditDisplay] = useState(false)
+  const editDisplay = useSelector((state: any) => state.auth.administratorRight)
   const { id } = useParams()
 
   useEffect(() => {
@@ -42,7 +43,6 @@ const ArticlePage = () => {
         { id: id },
         (res: any) => {
           setMarkdown(res.list[0].content)
-          setEditDisplay(res.editRight)
           store.dispatch({
             type: 'SET_EDITOR_CONTENT',
             value: res.list[0]

@@ -61,7 +61,7 @@
 }
 
 /*button*/
-.button {
+.sign-button {
   width: 60%;
   height: 50px;
   margin: 12px auto 10%;
@@ -74,11 +74,11 @@
   cursor: pointer;
   transition: .2s ease-in;
 }
-.button:hover {
+.sign-button:hover {
   transform: translateY(-3px);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 }
-.button:focus {
+.sign-button:focus {
   outline: none;
 }
 

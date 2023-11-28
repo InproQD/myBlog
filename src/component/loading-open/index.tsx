@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './index.css'
 import { useLocation } from 'react-router-dom'
+import { request } from '@/util/request'
+import store from '@/redux/store'
 
 const LoadingPage = () => {
   const [loading, setLoading] = useState(true)
@@ -38,6 +40,19 @@ const LoadingPage = () => {
     setLoading(true)
     setActiveOpen(true)
     LoadingFunction()
+
+    request
+      .get(
+        'http://123.207.40.28:8083/api/verify-token',
+        {},
+        (res: any) => {
+          store.dispatch({ type: 'SET_ADMINISTRATOR_RIGHT', value: res.valid })
+        },
+        (res: any) => {
+          store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
+        }
+      )
+      .then()
   }, [location])
 
   return (
