@@ -5,6 +5,7 @@ import { request } from '@/util/request'
 import store from '@/redux/store'
 import BackBtn from '@/component/buttons/backBtn'
 import { Link } from 'react-router-dom'
+import SubmitBtn from '@/component/buttons/submitBtn'
 
 const Editor = () => {
   const [formData, setFormData] = useState({
@@ -65,9 +66,7 @@ const Editor = () => {
             onChange={handleInputChange}
           />
 
-          <button className="submit-btn" onClick={handleSubmit}>
-            Submit
-          </button>
+          <SubmitBtn onClick={handleSubmit}></SubmitBtn>
         </div>
         <MDEditor
           value={content}

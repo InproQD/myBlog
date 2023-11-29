@@ -3,11 +3,14 @@ import './index.css'
 import MDEditor from '@uiw/react-md-editor'
 import { request } from '@/util/request'
 import { useParams } from 'react-router-dom'
-import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import store from '@/redux/store'
 import { useSelector } from 'react-redux'
 import { Tool } from '@/util/tool'
+import { Link } from 'react-router-dom'
+import BackBtn from '@/component/buttons/backBtn'
+import SubmitBtn from '@/component/buttons/submitBtn'
 
 const Editor = () => {
   const [formData, setFormData] = useState({
@@ -57,16 +60,23 @@ const Editor = () => {
       )
       .then()
   }
+
   const handleInputChange = (event: any) => {
     const { name, value } = event.target
     setFormData({ ...formData, [name]: value })
   }
+
   return (
     <div className="editor-container">
       <div className="editor-wrap">
+        <Link to={`/content/${id}`}>
+          <div className="back-wrap">
+            <BackBtn></BackBtn>
+          </div>
+        </Link>
         <div className="top-panel">
-          <button className="back-button" onClick={refreshData}>
-            <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+          <button className="refresh-button" onClick={refreshData}>
+            <FontAwesomeIcon icon={faArrowsRotate} />
           </button>
           <input
             placeholder="Enter your title"
@@ -92,10 +102,7 @@ const Editor = () => {
             value={formData.author}
             onChange={handleInputChange}
           />
-
-          <button className="submit-btn" onClick={handleSubmit}>
-            Submit
-          </button>
+          <SubmitBtn onClick={handleSubmit}></SubmitBtn>
         </div>
         <MDEditor
           value={content}
