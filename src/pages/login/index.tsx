@@ -26,6 +26,7 @@ function Login() {
       .then()
   }
   const handleViewAsGuest = () => {
+    window.localStorage.setItem('Access-Token', '')
     navigate('/home')
   }
   return (

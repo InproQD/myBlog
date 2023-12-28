@@ -1,26 +1,62 @@
 .header {
-  height: 400px;
-  width: 100vw;
-  background-image: url('http://123.207.40.28/card15.jpg');
+    height: 400px;
+    width: 100vw;
+}
+.row{
+    margin: auto;
+    position: relative;
 }
 .content-panel {
-  width: 800px;
-  padding: 24px 36px;
-  height: fit-content;
-  min-height: 600px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgb(134, 133, 133);
-  margin: -50px auto 50px auto;
+    width: 800px;
+    padding: 24px 36px;
+    height: fit-content;
+    min-height: 600px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(134, 133, 133);
+    margin: -50px auto 50px 300px;
 }
+
+.catalog {
+    width: 260px;
+    background: #f9f9f9;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 5px 10px 20px rgb(134, 133, 133);
+    padding: 10px 20px;
+}
+
+.catalog-before {
+    position: absolute;
+    top: 60px;
+    right: 400px;
+}
+
+.catalog-after {
+    position: fixed;
+    top: 80px;
+    right: 400px
+}
+
+.catalog-list{
+    list-style: none;
+    padding: 0;
+}
+.catalog-list a{
+    color: black;
+    cursor: pointer;
+}
+
 .function-panel {
-  width: 100%;
-  display: flex;
-  justify-content: right;
+    width: 100%;
+    display: flex;
+    justify-content: right;
 }
+
 .edit {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 .edit:hover {
-  color: red;
+    color: red;
 }
