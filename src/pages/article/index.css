@@ -17,6 +17,14 @@
     margin: -50px auto 50px 300px;
 }
 
+.footer-card {
+    width: 872px;
+    height: fit-content;
+    margin: 0 auto 50px 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .catalog {
     width: 260px;
     background: #f9f9f9;

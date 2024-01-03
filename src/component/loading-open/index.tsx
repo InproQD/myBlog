@@ -40,7 +40,7 @@ const LoadingPage = () => {
     setLoading(true)
     setActiveOpen(true)
     LoadingFunction()
-
+    window.scrollTo(0, 0)
     request
       .get(
         'http://123.207.40.28:8083/api/verify-token',

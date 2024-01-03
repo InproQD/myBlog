@@ -13,6 +13,7 @@ import store from '@/redux/store'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileText } from '@fortawesome/free-solid-svg-icons'
+import ArticleCard from '@/component/articleCards'
 // 配合highlight实现代码高亮
 const renderer = new marked.Renderer()
 
@@ -39,7 +40,24 @@ const ArticlePage = () => {
   const { id } = useParams()
   const [achieveTop, setIsAchieveTop] = useState(false)
   const catalogRef = useRef(null)
-
+  const [preArticle, setPreArticle] = useState({
+    id: '',
+    title: '',
+    content: '',
+    create_time: '',
+    author: '',
+    tag: '',
+    introduction: ''
+  })
+  const [nextArticle, setNextArticle] = useState({
+    id: '',
+    title: '',
+    content: '',
+    create_time: '',
+    author: '',
+    tag: '',
+    introduction: ''
+  })
   useEffect(() => {
     request
       .get(
@@ -57,7 +75,31 @@ const ArticlePage = () => {
         }
       )
       .then()
-  }, [])
+    request
+      .get(
+        'http://127.0.0.1:8083/api/get-pre-articles',
+        { id: id },
+        (res: any) => {
+          setPreArticle(res.list[0])
+        },
+        (res: any) => {
+          store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
+        }
+      )
+      .then()
+    request
+      .get(
+        'http://127.0.0.1:8083/api/get-next-articles',
+        { id: id },
+        (res: any) => {
+          setNextArticle(res.list[0])
+        },
+        (res: any) => {
+          store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
+        }
+      )
+      .then()
+  }, [id])
 
   const markdownToHtml = marked(markdown)
 
@@ -88,6 +130,7 @@ const ArticlePage = () => {
     }
   }, [])
 
+  // 获取目录内容
   const handleCatalogArray = (element) => {
     const titleArray = element.querySelectorAll('h1, h2, h3')
     const catalogueArray = []
@@ -104,6 +147,7 @@ const ArticlePage = () => {
     })
     setCatalogue(catalogueArray)
   }
+  // 店里目录跳转
   const handleListEvent = (text) => {
     const elements = Array.from(document.getElementById('article').querySelectorAll('h1, h2, h3')).filter((element) =>
       element.innerText?.includes(text)
@@ -137,7 +181,10 @@ const ArticlePage = () => {
           )}
           <div id="article"></div>
         </div>
-
+        <div className="footer-card">
+          <ArticleCard propsInfo={preArticle}></ArticleCard>
+          <ArticleCard propsInfo={nextArticle}></ArticleCard>
+        </div>
         <div className={`catalog ${achieveTop ? 'catalog-after' : 'catalog-before'}`} ref={catalogRef}>
           <div className="f-s-20 f-w-700">
             <FontAwesomeIcon icon={faFileText} className="pr-3"></FontAwesomeIcon>
