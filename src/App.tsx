@@ -6,6 +6,7 @@ import ArticlePage from '@/pages/article'
 import MediaPage from '@/pages/media'
 import Editor from '@/pages/editor'
 import Write from '@/pages/write'
+import CommentPage from '@/pages/comment'
 import ProgressBar from '@/component/pageProgress/index'
 import LoadingPage from '@/component/loading-open'
 import { message } from 'antd'
@@ -44,6 +45,7 @@ function App() {
         <Route path="/video" element={<MediaPage />}></Route>
         <Route path="/edit/:id" element={<Editor />}></Route>
         <Route path="/create" element={<Write />}></Route>
+        <Route path="/comment" element={<CommentPage />}></Route>
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
 

@@ -6,7 +6,7 @@
   display: flex;
   z-index: 1;
   justify-content: space-around;
-  background: linear-gradient(to right, #edb65b, #020202);
+  background: linear-gradient(to right, #edb65b, #262626);
   transition: background-color 0.5s ease;
 }
 

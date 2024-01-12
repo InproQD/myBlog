@@ -6,19 +6,16 @@ import { faDotCircle, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { Link, useParams } from 'react-router-dom'
-import PropTypes from 'prop-types'
-const ArticleCard = (props) => {
-  ArticleCard.propTypes = {
-    propsInfo: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-      create_time: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      tag: PropTypes.string.isRequired,
-      introduction: PropTypes.string.isRequired
-    }).isRequired
-  }
+interface PropsType {
+  id: string
+  title: string
+  content: string
+  create_time: string
+  author: string
+  tag: string
+  introduction: string
+}
+const ArticleCard = (props: { propsInfo: PropsType }) => {
   const { id } = useParams()
   const { propsInfo } = props
 
@@ -31,14 +28,14 @@ const ArticleCard = (props) => {
             上一篇
           </div>
         )) || <></>}
-        {(id < propsInfo.id && (
+        {(Number(id) < Number(propsInfo.id) && (
           <div className="top-right">
-            <FontAwesomeIcon icon={faAngleRight} />
             下一篇
+            <FontAwesomeIcon icon={faAngleRight} />
           </div>
         )) || <></>}
-        {(id == propsInfo.id && (
-          <div className={id == 1 ? 'top-left' : 'top-right'}>
+        {(Number(id) === Number(propsInfo.id) && (
+          <div className={Number(id) == 1 ? 'top-left' : 'top-right'}>
             <FontAwesomeIcon icon={faDotCircle} /> 本篇
           </div>
         )) || <></>}

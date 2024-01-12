@@ -19,6 +19,10 @@
   font-size: 10px !important;
 }
 
+.f-s-12 {
+  font-size: 12px !important;
+}
+
 .f-s-14 {
   font-size: 14px !important;
 }
@@ -1090,6 +1094,10 @@
 
 .d-flex {
   display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
 }
 
 .justify-space-between {

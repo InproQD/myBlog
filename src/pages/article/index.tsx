@@ -35,7 +35,7 @@ marked.setOptions(options)
 
 const ArticlePage = () => {
   const [markdown, setMarkdown] = useState('')
-  const [catalogue, setCatalogue] = useState([])
+  const [catalogue, setCatalogue] = useState<{ text: string; childList: any[] }[]>([])
   const editDisplay = useSelector((state: any) => state.auth.administratorRight)
   const { id } = useParams()
   const [achieveTop, setIsAchieveTop] = useState(false)
@@ -77,7 +77,7 @@ const ArticlePage = () => {
       .then()
     request
       .get(
-        'http://127.0.0.1:8083/api/get-pre-articles',
+        'http://123.207.40.28:8083/api/get-pre-articles',
         { id: id },
         (res: any) => {
           setPreArticle(res.list[0])
@@ -89,7 +89,7 @@ const ArticlePage = () => {
       .then()
     request
       .get(
-        'http://127.0.0.1:8083/api/get-next-articles',
+        'http://123.207.40.28:8083/api/get-next-articles',
         { id: id },
         (res: any) => {
           setNextArticle(res.list[0])
@@ -131,34 +131,37 @@ const ArticlePage = () => {
   }, [])
 
   // 获取目录内容
-  const handleCatalogArray = (element) => {
+  const handleCatalogArray = (element: HTMLElement) => {
     const titleArray = element.querySelectorAll('h1, h2, h3')
-    const catalogueArray = []
+    const catalogueArray: { text: string; childList: any[] }[] = []
 
-    let level = titleArray[0].tagName.charAt(1)
-    Array.from(titleArray).forEach((i) => {
-      const realLevel = parseInt(i.tagName.charAt(1))
-      if (level >= realLevel) {
+    let level = Number(titleArray[0]?.tagName?.charAt(1))
+    Array.from(titleArray).forEach((i: any) => {
+      const realLevel = parseInt(i?.tagName?.charAt(1))
+      if (level && realLevel && level >= realLevel) {
         level = realLevel
-        catalogueArray.push({ text: i.textContent, childList: [] })
-      } else if (level < realLevel) {
-        catalogueArray[catalogueArray.length - 1].childList.push({ text: i.textContent, childList: [] })
+        catalogueArray.push({ text: i.textContent || '', childList: [] })
+      } else if (level && realLevel && level < realLevel) {
+        catalogueArray[catalogueArray.length - 1].childList.push({ text: i.textContent || '', childList: [] })
       }
     })
     setCatalogue(catalogueArray)
   }
+
   // 店里目录跳转
-  const handleListEvent = (text) => {
-    const elements = Array.from(document.getElementById('article').querySelectorAll('h1, h2, h3')).filter((element) =>
-      element.innerText?.includes(text)
-    )
+  const handleListEvent = (text: string) => {
+    if (document.getElementById('article')) {
+      const elements = Array.from(document?.getElementById('article')?.querySelectorAll('h1, h2, h3') ?? []).filter(
+        (element: any) => element?.innerText?.includes(text)
+      )
 
-    if (elements.length > 0) {
-      // 获取第一个匹配的元素
-      const targetElement = elements[0]
+      if (elements.length > 0) {
+        // 获取第一个匹配的元素
+        const targetElement = elements[0]
 
-      // 将页面滚动到目标元素所在位置，并添加偏移量
-      targetElement.scrollIntoView({ behavior: 'smooth' })
+        // 将页面滚动到目标元素所在位置，并添加偏移量
+        targetElement.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 
@@ -191,7 +194,7 @@ const ArticlePage = () => {
             目录
           </div>
           <ol className="catalog-list">
-            {catalogue.map((item, index) => (
+            {catalogue.map((item: any, index: number) => (
               <li key={index}>
                 <a
                   onClick={() => {
@@ -202,7 +205,7 @@ const ArticlePage = () => {
                 </a>
                 {(
                   <ul style={{ listStyle: 'none' }}>
-                    {item.childList.map((childItem, childIndex) => (
+                    {item.childList.map((childItem: any, childIndex: number) => (
                       <li key={childIndex}>
                         <a
                           onClick={() => {

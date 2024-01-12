@@ -51,7 +51,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
   const navItems = [
     { title: 'Home', link: '/home', icon: faHouse },
     { title: 'About', link: '/about', icon: faTag },
-    { title: 'Contact', link: '/contact', icon: faComment },
+    { title: 'Comment', link: '/comment', icon: faComment },
     { title: 'Video', link: '/video', icon: faCirclePlay },
     {
       title: '',
