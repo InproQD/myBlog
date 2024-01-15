@@ -7,14 +7,22 @@ const { TextArea } = Input
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 
-const CommentEditor = (props: { parentId: number; parentName: string; type: string; click: any; update: any }) => {
+type Props = {
+  parentId: number
+  parentName: string
+  type: string
+  click: () => void
+  update: () => void
+}
+
+const CommentEditor: React.FC<Props> = ({ parentId, parentName, type, click, update }) => {
   const [userName, setUserName] = useState('')
   const [comment, setComment] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('http://123.207.40.28/avatar1.png')
-  const editorType = props.type
+  const editorType = type
 
   const handleDelete = () => {
-    props.click('delete')
+    click()
   }
 
   const handleFormSubmit = () => {
@@ -25,17 +33,18 @@ const CommentEditor = (props: { parentId: number; parentName: string; type: stri
           name: userName,
           content: comment,
           avatar: avatarUrl,
-          parentId: props.parentId || 0,
-          respondent: props.parentName || null
+          parentId: parentId || 0,
+          respondent: parentName || null
         },
         (res: any) => {
           store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'success' } })
+          update()
         },
         (res: any) => {
           store.dispatch({ type: 'SET_MESSAGE', value: { msg: res.msg, type: 'error' } })
         }
       )
-      .then(props.update())
+      .then()
   }
 
   return (

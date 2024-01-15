@@ -77,7 +77,7 @@ const CommentPage = () => {
           <FontAwesomeIcon icon={faComment} className="mr-3"></FontAwesomeIcon>
           <span className="f-w-700">评论区</span>
         </div>
-        <CommentEditor type={'comment'} parentId={0} parentName={''} update={listComments} click={0} />
+        <CommentEditor type={'comment'} parentId={0} parentName={''} update={listComments} />
       </div>
 
       <div className="list-comment">
