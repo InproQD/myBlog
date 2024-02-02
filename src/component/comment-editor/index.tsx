@@ -9,20 +9,23 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 
 type Props = {
   parentId: number
+  articleCommentId?: number
   parentName: string
   type: string
-  click: () => void
+  click?: () => void
   update: () => void
 }
 
-const CommentEditor: React.FC<Props> = ({ parentId, parentName, type, click, update }) => {
+const CommentEditor: React.FC<Props> = ({ parentId, articleCommentId, parentName, type, click, update }) => {
   const [userName, setUserName] = useState('')
   const [comment, setComment] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('http://123.207.40.28/avatar1.png')
   const editorType = type
 
   const handleDelete = () => {
-    click()
+    if (click) {
+      click()
+    }
   }
 
   const handleFormSubmit = () => {
@@ -34,6 +37,7 @@ const CommentEditor: React.FC<Props> = ({ parentId, parentName, type, click, upd
           content: comment,
           avatar: avatarUrl,
           parentId: parentId || 0,
+          articleId: articleCommentId || null,
           respondent: parentName || null
         },
         (res: any) => {

@@ -16,7 +16,15 @@
     box-shadow: 0 5px 10px rgb(134, 133, 133);
     margin: -50px auto 50px 300px;
 }
-
+.article-comment {
+    width: 800px;
+    padding: 24px 36px;
+    height: fit-content;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(134, 133, 133);
+    margin: 50px auto 50px 300px;
+}
 .footer-card {
     width: 872px;
     height: fit-content;

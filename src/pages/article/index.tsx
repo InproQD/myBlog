@@ -13,7 +13,8 @@ import store from '@/redux/store'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileText } from '@fortawesome/free-solid-svg-icons'
-import ArticleCard from '@/component/articleCards'
+import ArticleCard from '@/component/article-cards'
+import CommentSection from '@/component/comment-section'
 // 配合highlight实现代码高亮
 const renderer = new marked.Renderer()
 
@@ -183,6 +184,9 @@ const ArticlePage = () => {
             </div>
           )}
           <div id="article"></div>
+        </div>
+        <div className="article-comment">
+          <CommentSection articleId={Number(id)}></CommentSection>
         </div>
         <div className="footer-card">
           <ArticleCard propsInfo={preArticle}></ArticleCard>

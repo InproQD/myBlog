@@ -4,7 +4,7 @@
   height: 70px;
   width: 100%;
   display: flex;
-  z-index: 1;
+  z-index: 999;
   justify-content: space-around;
   background: linear-gradient(to right, #edb65b, #262626);
   transition: background-color 0.5s ease;
