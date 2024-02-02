@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react'
-import { Modal, Drawer, Avatar, Tooltip } from 'antd'
+import { Modal, Drawer, Avatar, Tooltip, Input } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -52,12 +52,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
     { title: 'Home', link: '/home', icon: faHouse },
     { title: 'About', link: '/about', icon: faTag },
     { title: 'Comment', link: '/comment', icon: faComment },
-    { title: 'Video', link: '/video', icon: faCirclePlay },
-    {
-      title: '',
-      link: '',
-      icon: faMagnifyingGlass
-    }
+    { title: 'Video', link: '/video', icon: faCirclePlay }
   ]
 
   const contactItem = [
@@ -70,10 +65,8 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
   const [searchOpen, setSearchOpen] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const handleSearch = (t: any) => {
-    if (t === '') {
-      setSearchOpen(true)
-    }
+  const handleSearch = () => {
+    setSearchOpen(true)
   }
   const isLogin = useSelector((state: any) => state.auth.administratorRight)
 
@@ -86,19 +79,22 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
         </div>
         <div className="navigator-wrap">
           {navItems.map((item, index) => (
-            <Link
-              to={item.link}
-              key={index}
-              onClick={() => {
-                handleSearch(item.title)
-              }}
-            >
+            <Link to={item.link} key={index}>
               <div className="navigator-tab px-4">
                 <FontAwesomeIcon icon={item.icon} className="pr-2"></FontAwesomeIcon>
                 <span>{item.title}</span>
               </div>
             </Link>
           ))}
+          <div
+            className="navigator-tab px-4"
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              handleSearch()
+            }}
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+          </div>
         </div>
       </div>
       <div>
@@ -153,7 +149,23 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({ children }) => {
           </Link>
         )}
       </div>
-      <Modal title="Modal 1000px width" centered open={searchOpen} width={1000}></Modal>
+      <Modal
+        centered
+        open={searchOpen}
+        width={1000}
+        footer={''}
+        onCancel={() => {
+          setSearchOpen(false)
+        }}
+      >
+        <div className="f-s-20">
+          <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+          <span className="pl-3">Search</span>
+        </div>
+        <div className="mt-2">
+          <Input placeholder="Please enter the key word" />
+        </div>
+      </Modal>
 
       {/*音乐播放器抽屉*/}
       <Drawer
